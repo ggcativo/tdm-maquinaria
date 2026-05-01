@@ -169,9 +169,8 @@
 /* ── Print ficha ───────────────────────────────────────────────────── */
 @media print {
   #navbar, .detail-topbar, .detail-actions, .detail-num { display: none !important; }
-  body { background: #fff !important; color: #06111f !important; }
-  .detail-body { grid-template-columns: 220px 1fr; min-height: auto; }
-  .detail-left { background: #f4f7fa !important; padding: 1.5rem; border: 1px solid #d0dce8; }
+  body, .detail-left, .detail-body, .detail-right { background: #fff !important; color: #06111f !important; }
+  .detail-left { border: 1px solid #d0dce8; padding: 1.5rem; }
   .detail-icon { font-size: 4rem !important; }
   .detail-right { padding: 1.5rem 2rem; }
   .detail-name { color: #06111f !important; font-size: 2rem !important; }
@@ -181,7 +180,8 @@
   .spec-item { background: #f4f7fa !important; border-color: #d0dce8 !important; }
   .spec-label { color: #888 !important; }
   .spec-value { color: #06111f !important; }
-  .detail-tag { border-color: #b5d4f4 !important; color: #185fa5 !important; }
+  .detail-tag { border-color: #b5d4f4 !important; color: #185fa5 !important; background: #e6f1fb !important; }
+  .status-badge { border-color: #b5d4f4 !important; }
 }
 
 /* ── Responsive ────────────────────────────────────────────────────── */
