@@ -40,7 +40,7 @@ function renderGrid() {
   const grid = document.getElementById('catalog-grid');
   const noResults = document.getElementById('no-results');
 
-  let list = allMachines;
+  let list = allMachines.filter(m => !m.destaque);
   if (currentCat !== 'all') list = list.filter(m => m.category === currentCat);
   if (searchTerm) {
     list = list.filter(m =>
