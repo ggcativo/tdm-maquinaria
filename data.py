@@ -315,7 +315,7 @@ MACHINES = [
         "peso": None,
         "velocidad": None,
         "capacidad": "32 mandris por cabeçote",
-        "imagen":"imagen": "/static/machine_17_2.jpg",
+        "imagen": "/static/machine_17_2.jpg",
 "imagens": [
     "/static/machine_17_1.jpg",
     "/static/machine_17_2.jpg",
