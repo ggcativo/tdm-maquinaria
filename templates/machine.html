@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ machine.name }} — TDM Maquinaria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/machine.css">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <div class="nav-left">
+    <div class="nav-logo">
+      <div class="logo-letters">TDM</div>
+      <div class="logo-tagline">Tudo de Madeira e Móveis</div>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-flags">
+      <div class="flags-row">
+        <svg class="flag-svg" width="24" height="16" viewBox="0 0 26 17"><rect width="26" height="17" fill="#009c3b"/><polygon points="13,1.5 24.5,8.5 13,15.5 1.5,8.5" fill="#fedf00"/><circle cx="13" cy="8.5" r="4.2" fill="#002776"/></svg>
+        <svg class="flag-svg" width="24" height="16" viewBox="0 0 26 17"><rect width="26" height="5.67" y="0" fill="#d52b1e"/><rect width="26" height="5.67" y="5.67" fill="#f4e400"/><rect width="26" height="5.67" y="11.33" fill="#007934"/></svg>
+      </div>
+      <span class="flags-label">BRA · BOL</span>
+    </div>
+  </div>
+  <div class="nav-search">
+    <input type="text" placeholder="Buscar máquina…" autocomplete="off" onkeydown="if(event.key==='Enter') window.location='/?q='+this.value">
+  </div>
+  <div class="nav-actions">
+    <a class="nav-btn btn-wa" href="https://wa.me/5916775803?text=Hola%2C%20me%20interesa%20información%20sobre%20maquinaria%20de%20carpintería." target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a class="nav-btn btn-ig" href="https://instagram.com/tdm.33" target="_blank">Instagram</a>
+    <a class="nav-btn btn-fb" href="https://www.facebook.com/share/1GryAekGzN/" target="_blank">Facebook</a>
+    <a class="nav-btn btn-print" href="/">🏠 Catálogo</a>
+  </div>
+</nav>
+
+<!-- ── TOPBAR ── -->
+<div class="detail-topbar">
+  <a class="back-btn" href="/">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    Volver al catálogo
+  </a>
+  <span class="detail-breadcrumb">
+    Catálogo → <span>{{ machine.category | upper }}</span> → {{ machine.name }}
+  </span>
+</div>
+
+<!-- ── DETALHE ── -->
+<div class="detail-body">
+
+  <!-- Lado esquerdo: imagem -->
+  <div class="detail-left">
+    <div class="detail-img-area">
+      <div class="detail-icon">{{ machine.icon }}</div>
+      <div class="detail-img-label">Foto de la máquina</div>
+      <div class="detail-img-sub">La imagen real será cargada próximamente</div>
+    </div>
+    <div class="detail-num">{{ machine.id }}</div>
+  </div>
+
+  <!-- Lado direito: info -->
+  <div class="detail-right">
+    <div class="detail-category">{{ machine.category | upper }}</div>
+    <h1 class="detail-name">{{ machine.name }}</h1>
+    <div class="detail-generic">{{ machine.generic }}</div>
+    <div class="detail-accent"></div>
+    <p class="detail-desc">{{ machine.desc }}</p>
+
+    <!-- Tags -->
+    <div class="detail-tags">
+      {% for tag in machine.tags %}
+      <span class="detail-tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+
+    <!-- Specs -->
+    <div class="detail-specs-title">Especificaciones técnicas</div>
+    <div class="detail-specs-grid">
+      <div class="spec-item">
+        <div class="spec-label">Potencia</div>
+        <div class="spec-value">{{ machine.potencia if machine.potencia else '—' }}</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Peso</div>
+        <div class="spec-value">{{ machine.peso if machine.peso else '—' }}</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Velocidad</div>
+        <div class="spec-value">{{ machine.velocidad if machine.velocidad else '—' }}</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Capacidad</div>
+        <div class="spec-value">{{ machine.capacidad if machine.capacidad else '—' }}</div>
+      </div>
+    </div>
+
+    <!-- Estado + Origem -->
+    <div class="detail-status-row">
+      {% if machine.estado %}
+      <span class="status-badge {{ 'badge-nueva' if machine.estado in ['Nueva','Nova'] else 'badge-usada' }}">
+        {{ machine.estado }}
+      </span>
+      {% endif %}
+      {% if machine.origen %}
+      <span class="status-badge badge-origen">Producto de {{ machine.origen }}</span>
+      {% endif %}
+      <span class="status-badge badge-origen">
+        <svg width="12" height="8" viewBox="0 0 26 17" style="border-radius:1px;"><rect width="26" height="17" fill="#009c3b"/><polygon points="13,1.5 24.5,8.5 13,15.5 1.5,8.5" fill="#fedf00"/><circle cx="13" cy="8.5" r="4.2" fill="#002776"/></svg>
+        Produto do Brasil
+      </span>
+    </div>
+
+    <!-- Preço -->
+    {% if machine.precio_usd %}
+    <div class="detail-price">USD {{ machine.precio_usd }}</div>
+    {% endif %}
+
+    <!-- Ações -->
+    <div class="detail-actions">
+      <a class="btn-action btn-action-wa" href="https://wa.me/5916775803?text=Hola%2C%20me%20interesa%20la%20m%C3%A1quina%3A%20*{{ machine.name }}*%20({{ machine.generic }}).%20%C2%BFPodr%C3%ADa%20brindarme%20m%C3%A1s%20informaci%C3%B3n%20y%20precio%3F" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultar vía WhatsApp
+      </a>
+      <button class="btn-action btn-action-print" onclick="window.print()">
+        🖨️ Imprimir ficha
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── FOOTER SIMPLES ── -->
+<footer style="padding:1.5rem 2rem;">
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 TDM · Tudo de Madeira e Móveis</span>
+    <span class="footer-copy">erikatdm.33@gmail.com · (+591) 6775-8038</span>
+  </div>
+</footer>
+
+</body>
+</html>
