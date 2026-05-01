@@ -87,8 +87,8 @@ function cardHTML(m) {
 
   return `
   <div class="machine-card${selClass}" data-id="${m.id}" data-cat="${m.category}" style="cursor:pointer;">
-    <div class="card-img" style="${bgStyle}">
-      <span class="card-icon">${m.icon}</span>
+    <div class="card-img" style="${m.imagen ? '' : bgStyle}">
+      ${m.imagen ? `<img src="${m.imagen}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;object-position:center;">` : `<span class="card-icon">${m.icon}</span>`}
       <span class="card-num">${m.id}</span>
       <span class="card-tag">${tag}</span>
       <div class="card-check">${checkMark}</div>
