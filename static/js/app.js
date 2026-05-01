@@ -4,7 +4,7 @@ let selectedIds  = new Set();
 let currentCat   = 'all';
 let searchTerm   = '';
 
-const WA_PHONE = '59170000000';
+const WA_PHONE = '5916775803';  // (+591) 6775-8038 — Bolivia
 
 /* ── Bootstrap ──────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -63,7 +63,6 @@ function renderGrid() {
 
   grid.innerHTML = list.map(m => cardHTML(m)).join('');
 
-  // attach click listeners after render
   grid.querySelectorAll('.machine-card').forEach(card => {
     card.addEventListener('click', () => toggleSelect(parseInt(card.dataset.id)));
   });
@@ -73,7 +72,7 @@ function renderGrid() {
 
 function cardHTML(m) {
   const sel = selectedIds.has(m.id);
-  const bgStyle = `background: ${m.color}22;`;
+  const bgStyle = `background: ${m.color}18;`;
   const checkMark = sel ? '✓' : '';
   const selClass  = sel ? ' selected' : '';
   const tag = m.tags[0] ? m.tags[0].toUpperCase() : '';
