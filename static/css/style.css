@@ -349,13 +349,7 @@ footer {
 
   body { background: #fff !important; color: #06111f !important; }
 
-  .hero {
-    background: #06111f !important;
-    min-height: auto !important;
-    padding: 1.2rem 2rem !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
+  .hero { display: none !important; }
   .hero-bg-grid, .hero-overlay { display: none !important; }
   .hero-inner { padding: 0 !important; }
   .hero-title { font-size: 1.8rem !important; color: #fff !important; }
