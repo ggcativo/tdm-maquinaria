@@ -57,13 +57,36 @@
 
   <!-- Lado esquerdo: imagem -->
   <div class="detail-left">
-    <div class="detail-img-area">
-      <div class="detail-icon">{{ machine.icon }}</div>
-      <div class="detail-img-label">Foto de la máquina</div>
-      <div class="detail-img-sub">La imagen real será cargada próximamente</div>
+  {% if machine.imagens %}
+  <div class="gallery">
+    <div class="gallery-main">
+      <img id="gallery-main-img" src="{{ machine.imagens[0] }}" alt="{{ machine.name }}">
     </div>
-    <div class="detail-num">{{ machine.id }}</div>
+    <div class="gallery-thumbs">
+      {% for img in machine.imagens %}
+      <img src="{{ img }}" alt="{{ machine.name }} {{ loop.index }}"
+        class="gallery-thumb {% if loop.first %}active{% endif %}"
+        onclick="document.getElementById('gallery-main-img').src='{{ img }}';
+                 document.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('active'));
+                 this.classList.add('active');">
+      {% endfor %}
+    </div>
   </div>
+  {% elif machine.imagen %}
+  <div class="gallery">
+    <div class="gallery-main">
+      <img src="{{ machine.imagen }}" alt="{{ machine.name }}">
+    </div>
+  </div>
+  {% else %}
+  <div class="detail-img-area">
+    <div class="detail-icon">{{ machine.icon }}</div>
+    <div class="detail-img-label">Foto de la máquina</div>
+    <div class="detail-img-sub">La imagen real será cargada próximamente</div>
+  </div>
+  {% endif %}
+  <div class="detail-num">{{ machine.id }}</div>
+</div>
 
   <!-- Lado direito: info -->
   <div class="detail-right">
