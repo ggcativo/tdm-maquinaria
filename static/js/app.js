@@ -4,7 +4,7 @@ let selectedIds  = new Set();
 let currentCat   = 'all';
 let searchTerm   = '';
 
-const WA_PHONE = '5916775803';  // (+591) 6775-8038 — Bolivia
+const WA_PHONE = '59167758038';  // (+591) 6775-8038 — Bolivia
 
 /* ── Bootstrap ──────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
