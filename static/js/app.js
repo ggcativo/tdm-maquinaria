@@ -9,7 +9,6 @@ const WA_PHONE = '5916775803';  // (+591) 6775-8038 — Bolivia
 /* ── Bootstrap ──────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   loadMachines();
-
   document.getElementById('search-input').addEventListener('input', (e) => {
     searchTerm = e.target.value.trim().toLowerCase();
     renderGrid();
@@ -42,10 +41,7 @@ function renderGrid() {
   const noResults = document.getElementById('no-results');
 
   let list = allMachines;
-
-  if (currentCat !== 'all') {
-    list = list.filter(m => m.category === currentCat);
-  }
+  if (currentCat !== 'all') list = list.filter(m => m.category === currentCat);
   if (searchTerm) {
     list = list.filter(m =>
       m.name.toLowerCase().includes(searchTerm) ||
@@ -60,11 +56,23 @@ function renderGrid() {
     return;
   }
   noResults.style.display = 'none';
-
   grid.innerHTML = list.map(m => cardHTML(m)).join('');
 
+  // Clique no card → página de detalhe
   grid.querySelectorAll('.machine-card').forEach(card => {
-    card.addEventListener('click', () => toggleSelect(parseInt(card.dataset.id)));
+    card.addEventListener('click', (e) => {
+      // Se clicou no botão de selecionar ou no link WA, não redireciona
+      if (e.target.closest('.card-check') || e.target.closest('.card-wa')) return;
+      window.location.href = `/machine/${card.dataset.id}`;
+    });
+  });
+
+  // Clique no check → selecionar
+  grid.querySelectorAll('.card-check').forEach(chk => {
+    chk.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleSelect(parseInt(chk.closest('.machine-card').dataset.id));
+    });
   });
 
   updateSelCount();
@@ -78,7 +86,7 @@ function cardHTML(m) {
   const tag = m.tags[0] ? m.tags[0].toUpperCase() : '';
 
   return `
-  <div class="machine-card${selClass}" data-id="${m.id}" data-cat="${m.category}">
+  <div class="machine-card${selClass}" data-id="${m.id}" data-cat="${m.category}" style="cursor:pointer;">
     <div class="card-img" style="${bgStyle}">
       <span class="card-icon">${m.icon}</span>
       <span class="card-num">${m.id}</span>
@@ -97,7 +105,7 @@ function cardHTML(m) {
         </svg>
         Consultar vía WhatsApp
       </a>
-      <span class="card-brand">TDM</span>
+      <span class="card-detail">Ver detalles →</span>
     </div>
   </div>`;
 }
